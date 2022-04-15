@@ -1,0 +1,26 @@
+services:
+  genericapp.api:
+    build:
+      context: C:\Users\mmcdermott\source\repos\POC\DistributedTracing\GenericApp
+      dockerfile: GenericApp.Api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+    image: genericappapi
+    ports:
+    - published: 55080
+      target: 80
+    volumes:
+    - C:\Users\mmcdermott\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\mmcdermott\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+  genericapp.web:
+    build:
+      context: C:\Users\mmcdermott\source\repos\POC\DistributedTracing\GenericApp
+      dockerfile: GenericApp.Web/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: genericappweb
+    ports:
+    - published: 56080
+      target: 80
+version: '3.4'

@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  genericapp.api:
+    image: ${DOCKER_REGISTRY-}genericappapi
+    build:
+      context: .
+      dockerfile: GenericApp.Api/Dockerfile
+  genericapp.web:
+    image: ${DOCKER_REGISTRY-}genericappweb
+    build:
+      context: .
+      dockerfile: GenericApp.Web/Dockerfile
